@@ -59,6 +59,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     @IBAction func lapReset(sender: AnyObject) {
+        if addLap == true {
+            laps.insert(stopWatchString, atIndex: 0)
+            lapsTableView.reloadData()
+        } else {
+            lapResetButton.setImage(UIImage(named: "lap.png"), forState: UIControlState.Normal)
+            laps.removeAll(keepCapacity: false)
+            lapsTableView.reloadData()
+            fractions = 0
+            seconds = 0
+            minutes = 0
+
+            stopWatchString = "00:00.00"
+            stopWatchLabel.text = stopWatchString
+        }
     }
     
     /***** Table View Functions *****/
