@@ -78,6 +78,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /***** Table View Functions *****/
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.Value1, reuseIdentifier: "Cell")
+        cell.textLabel?.text = "Lap \(laps.count-indexPath.row)"
+        cell.detailTextLabel?.text = laps[indexPath.row]
         return cell
     }
     
