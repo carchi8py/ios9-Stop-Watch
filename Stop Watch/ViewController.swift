@@ -49,6 +49,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             startStopButton.setImage(UIImage(named: "stop.png"), forState: UIControlState.Normal)
             lapResetButton.setImage(UIImage(named: "lap.png"), forState: UIControlState.Normal)
             addLap = true
+        } else {
+            timer.invalidate()
+            startStopWatch = true
+            startStopButton.setImage(UIImage(named: "start.png"), forState: UIControlState.Normal)
+            lapResetButton.setImage(UIImage(named: "reset.png"), forState: UIControlState.Normal)
+            addLap = false
         }
     }
 
