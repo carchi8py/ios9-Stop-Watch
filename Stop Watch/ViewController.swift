@@ -44,7 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     /***** UI Actions *****/
     @IBAction func startStop(sender: AnyObject) {
         if startStopWatch == true {
-            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateStopWatch"), userInfo: nil, repeats: true)
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: Selector("updateStopWatch"), userInfo: nil, repeats: true)
             startStopWatch = false
             startStopButton.setImage(UIImage(named: "stop.png"), forState: UIControlState.Normal)
             lapResetButton.setImage(UIImage(named: "lap.png"), forState: UIControlState.Normal)
