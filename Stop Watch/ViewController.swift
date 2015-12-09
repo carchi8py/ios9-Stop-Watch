@@ -30,6 +30,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        stopWatchLabel.text = "00:00.00"
+        lapsTableView.delegate = self
+        lapsTableView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -39,6 +43,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     /***** UI Actions *****/
     @IBAction func startStop(sender: AnyObject) {
+        if startStopWatch == true {
+            timer = NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: Selector("updateStopWatch"), userInfo: nil, repeats: true)
+            startStopWatch = false
+            startStopButton.setImage(UIImage(named: "stop.png"), forState: UIControlState.Normal)
+            lapResetButton.setImage(UIImage(named: "lap.png"), forState: UIControlState.Normal)
+            addLap = true
+        }
     }
 
     @IBAction func lapReset(sender: AnyObject) {
@@ -56,7 +67,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     /***** Helper Functions *****/
     func updateStopWatch() {
+        fractions += 1
+        if fractions == 100 {
+            seconds += 1
+            fractions = 0
+        }
+        if seconds == 60 {
+            minutes += 1
+            seconds = 0
+        }
+        let fractionString = fractions > 9 ? "\(fractions)" : "0\(fractions)"
+        let secondsString = seconds > 9 ? "\(seconds)" : "0\(seconds)"
+        let minutesString = minutes > 9 ? "\(minutes)" : "0\(minutes)"
         
+        stopWatchString = "\(minutesString):\(secondsString).\(fractionString)"
+        stopWatchLabel.text = stopWatchString
     }
     
     
